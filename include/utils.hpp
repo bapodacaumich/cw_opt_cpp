@@ -22,6 +22,9 @@ casadi::MX compute_path_cost(casadi::MX& T, const std::vector<std::vector<float>
 // loading csv files for knotpoints
 bool loadCSV(const std::string& filename, std::vector<std::vector<float>>& data, int rowlen = 3);
 
+// save out solutions to csv files
+void saveCSV(const std::string& filename, const casadi::DM& data);
+
 // find first file with prefix in directory
 std::string firstFileWithPrefix(const std::string& directory, const std::string& prefix);
 
@@ -31,6 +34,7 @@ void print2DVector(const std::vector<std::vector<float>>& vec);
 // display progress bar
 void displayProgressBar(double progress, int width = 150);
 
+// get initial intermediate points for warm start
 casadi::DM get_intermediate_points_init(const std::vector<std::vector<float>>& knot_points, const casadi::DM& T_init);
 
 #endif // UTILS_HPP
