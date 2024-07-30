@@ -1,5 +1,0 @@
-/home/brandon/cplusplusport/cw_opt/build/CMakeFiles/cw_obs_ip_ocp.dir
-/home/brandon/cplusplusport/cw_opt/build/CMakeFiles/cw_obs_ocp.dir
-/home/brandon/cplusplusport/cw_opt/build/CMakeFiles/cw_ocp.dir
-/home/brandon/cplusplusport/cw_opt/build/CMakeFiles/edit_cache.dir
-/home/brandon/cplusplusport/cw_opt/build/CMakeFiles/rebuild_cache.dir

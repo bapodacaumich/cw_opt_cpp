@@ -1,1 +1,0 @@
-/usr/bin/g++ -Wall -Wextra -pthread -O3  -Wl,-rpath -Wl,/home/brandon/cplusplusport/cw_opt/build CMakeFiles/cw_ocp.dir/src/utils.cpp.o CMakeFiles/cw_ocp.dir/src/constraints.cpp.o CMakeFiles/cw_ocp.dir/src/cw_ocp.cpp.o -o cw_ocp   -L/usr/local/lib  -Wl,-rpath,/usr/local/lib /usr/local/lib/libcasadi.so -lipopt 
