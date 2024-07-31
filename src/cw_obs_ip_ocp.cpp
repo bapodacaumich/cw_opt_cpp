@@ -132,9 +132,8 @@ int main(int argc, char* argv[]){
     std::cout << sol.value(T) << std::endl; // print solution
     std::cout << sol.value(X) << std::endl; // print solution
 
-    std::string vgd_str = vgd;
-    saveCSV("../data/solution/" + vgd_str + locality_str + "t.csv", sol.value(T));
-    saveCSV("../data/solution/" + vgd_str + locality_str + "x.csv", sol.value(X));
+    saveCSV("../data/solution/obs_ip/" + std::string(vgd) + locality_str + "_t.csv", sol.value(T));
+    saveCSV("../data/solution/obs_ip/" + std::string(vgd) + locality_str + "_x.csv", sol.value(X));
 
     return 0;
 }

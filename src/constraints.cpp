@@ -50,7 +50,7 @@ void enforce_station_keepout(const std::vector<std::vector<std::vector<float>>>&
     for (size_t i = 0; i < n_drift; i++) {
         // progress bar
         double progress = static_cast<double>(i) / static_cast<double>(n_drift);
-        displayProgressBar( progress );
+        displayProgressBar(progress);
 
         // get start and end points of drift segment
         std::vector<float> start = knot_points[i];
@@ -71,11 +71,11 @@ void enforce_station_keepout(const std::vector<std::vector<std::vector<float>>>&
         for (size_t j = 0; j < n_obs; j++) {
             // enforce convex hull constraints
             progress += 1.0 / static_cast<double>(n_obs) / static_cast<double>(n_drift);
-            displayProgressBar( progress );
+            displayProgressBar(progress);
             enforce_convex_hull_from_points(station_normals[j], station_points[j], opti, poses, min_station_distance);
         }
     }
-    displayProgressBar( 1.0 );
+    displayProgressBar(1.0);
     std::cout << std::endl;
 }
 
@@ -97,7 +97,7 @@ void enforce_station_keepout(const std::vector<std::vector<std::vector<float>>>&
     for (size_t i = 0; i < n_drift; i++) {
         // progress bar
         double progress = static_cast<double>(i) / static_cast<double>(n_drift);
-        displayProgressBar( progress );
+        displayProgressBar(progress);
 
         // get start and end points of drift segment
         std::vector<float> start0 = knot_points[i];
@@ -134,10 +134,10 @@ void enforce_station_keepout(const std::vector<std::vector<std::vector<float>>>&
         for (size_t j = 0; j < n_obs; j++) {
             // enforce convex hull constraints
             progress += 1.0 / static_cast<double>(n_obs) / static_cast<double>(n_drift);
-            displayProgressBar( progress );
+            displayProgressBar(progress);
             enforce_convex_hull_from_points(station_normals[j], station_points[j], opti, poses, min_station_distance);
         }
     }
-    displayProgressBar( 1.0 );
+    displayProgressBar(1.0);
     std::cout << std::endl;
 }

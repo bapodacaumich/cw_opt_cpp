@@ -305,7 +305,7 @@ void saveCSV(const std::string& filename, const casadi::DM& data) {
         }
         file << "\n"; // End of row
     }
-    
+
     // Close the file
     file.close();
 }

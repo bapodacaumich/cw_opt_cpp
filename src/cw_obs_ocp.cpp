@@ -122,6 +122,8 @@ int main(int argc, char* argv[]){
 
     casadi::OptiSol sol = opti.solve();
 
+    saveCSV("../data/solution/obs/" + std::string(vgd) + locality_str + "_t.csv", sol.value(T));
+
     std::cout << sol.value(T) << std::endl; // print solution
 
     return 0;

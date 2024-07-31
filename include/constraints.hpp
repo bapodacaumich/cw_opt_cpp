@@ -14,22 +14,22 @@ void enforce_convex_hull_from_points(
 
 void enforce_station_keepout(
     const std::vector<std::vector<std::vector<float>>>& station_normals,
-    const std::vector<std::vector<std::vector<float>>>& station_points, 
-    casadi::Opti& opti, 
-    const std::vector<std::vector<float>>& knot_points, 
-    casadi::MX& T, 
-    float min_station_distance=0.0f, 
+    const std::vector<std::vector<std::vector<float>>>& station_points,
+    casadi::Opti& opti,
+    const std::vector<std::vector<float>>& knot_points,
+    casadi::MX& T,
+    float min_station_distance=0.0f,
     size_t nT=3
     );
 
 void enforce_station_keepout(
     const std::vector<std::vector<std::vector<float>>>& station_normals,
-    const std::vector<std::vector<std::vector<float>>>& station_points, 
-    casadi::Opti& opti, 
-    const std::vector<std::vector<float>>& knot_points, 
+    const std::vector<std::vector<std::vector<float>>>& station_points,
+    casadi::Opti& opti,
+    const std::vector<std::vector<float>>& knot_points,
     casadi::MX& X,
-    casadi::MX& T, 
-    float min_station_distance=0.0f, 
+    casadi::MX& T,
+    float min_station_distance=0.0f,
     size_t nT=3
     );
 
