@@ -275,6 +275,42 @@ bool loadCSV(const std::string& filename, std::vector<std::vector<float>>& data,
     return true;
 }
 
+void saveCSV(const std::string& filename, const std::vector<std::vector<float>>& data) {
+    /*
+    * Save 2d std::vector float to a csv file
+    * @param filename: std::string, path to save file
+    * @param data: std::vector<std::vector<float>>, data to save
+    */
+
+
+    // Open the file in output mode
+    std::ofstream file(filename);
+    
+    // Check if the file was opened successfully
+    if (!file.is_open()) {
+        std::cerr << "Error opening file: " << filename << std::endl;
+        return;
+    }
+    
+    // Iterate over the rows
+    size_t n_rows = data.size();
+    for (size_t i = 0; i < n_rows; ++i) {
+        // Iterate over the columns
+        size_t n_cols = data[i].size();
+        for (size_t j = 0; j < n_cols; ++j) {
+            file << std::fixed << std::setprecision(6) << data[i][j]; // Write value
+            if (j < n_cols - 1) {
+                file << ","; // Separate values with a comma
+            }
+        }
+        file << "\n"; // End of row
+    }
+
+    // Close the file
+    file.close();
+}
+
+
 void saveCSV(const std::string& filename, const casadi::DM& data) {
     /*
     * Save casadi::DM to a csv file
@@ -298,7 +334,7 @@ void saveCSV(const std::string& filename, const casadi::DM& data) {
         // Iterate over the columns
         size_t n_cols = data.size2();
         for (size_t j = 0; j < n_cols; ++j) {
-            file << std::fixed << std::setprecision(6) << data(i,j); // Write value
+            file << std::fixed << std::setprecision(16) << data(i,j); // Write value
             if (j < n_cols - 1) {
                 file << ","; // Separate values with a comma
             }

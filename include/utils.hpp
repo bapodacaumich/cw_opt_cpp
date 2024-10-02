@@ -24,6 +24,7 @@ bool loadCSV(const std::string& filename, std::vector<std::vector<float>>& data,
 
 // save out solutions to csv files
 void saveCSV(const std::string& filename, const casadi::DM& data);
+void saveCSV(const std::string& filename, const std::vector<std::vector<float>>& data);
 
 // find first file with prefix in directory
 std::string firstFileWithPrefix(const std::string& directory, const std::string& prefix);

@@ -1,10 +1,10 @@
 #include "utils.hpp"
 #include "constraints.hpp"
+#include "vec3_struct.hpp"
 
 #include <casadi/casadi.hpp>
 #include <chrono>
 #include <iostream>
-#include <map>
 #include <sstream>
 #include <string>
 #include <vector>
@@ -12,8 +12,6 @@
 int main(int argc, char* argv[]){
     // argc: number of arguments
     // argv: array of arguments
-
-    std::cout << "Number of args: " << argc << std::endl;
 
     char* vgd = NULL;
     bool locality = true;
@@ -45,6 +43,8 @@ int main(int argc, char* argv[]){
     std::string locality_str = "";
     if (locality) {locality_str = "_local";}
 
+    // initialize time recording variables
+
     // find file that matches vgd, locality, and knot directory
     std::string knotdir = "../data/knot_points/";
     std::string matching_file = firstFileWithPrefix(knotdir, vgd+locality_str);
@@ -58,6 +58,16 @@ int main(int argc, char* argv[]){
     std::vector<std::vector<std::vector<float>>> station_centroids;
 
     size_t num_obstacles = 15;
+    float scale = 4;
+
+    // offset to align with station
+    std::vector<float> offset = {2.529f, 4.821f, 2.591f};
+
+    // change offset to reflect center of gravity
+    offset[0] -= 2.92199515f;
+    offset[1] -= 5.14701097f;
+    offset[2] -= 2.63653781f;
+
     for (size_t i = 0; i < num_obstacles; i++){
         std::string normal_file = "../data/model/normal_centroid/obs" + std::to_string(i+1) + "_normals.txt";
         std::string centroid_file = "../data/model/normal_centroid/obs" + std::to_string(i+1) + "_points.txt";
@@ -67,6 +77,13 @@ int main(int argc, char* argv[]){
 
         loadCSV(normal_file, normals);
         loadCSV(centroid_file, centroids);
+
+        for (size_t tri_idx = 0; tri_idx < centroids.size(); tri_idx++) {
+            for (size_t coord_idx = 0; coord_idx < 3; coord_idx++) {
+                centroids[tri_idx][coord_idx] = centroids[tri_idx][coord_idx] += offset[coord_idx];
+                centroids[tri_idx][coord_idx] = centroids[tri_idx][coord_idx] *= scale;
+            }
+        }
 
         station_normals.push_back(normals);
         station_centroids.push_back(centroids);
@@ -95,7 +112,14 @@ int main(int argc, char* argv[]){
 
     auto start = std::chrono::high_resolution_clock::now();
 
-    enforce_station_keepout(station_normals, station_centroids, opti, knot_points, X, T);
+    enforce_station_keepout(
+        station_normals, 
+        station_centroids, 
+        opti, 
+        knot_points, 
+        X, 
+        T
+    );
 
     auto end = std::chrono::high_resolution_clock::now();
 
